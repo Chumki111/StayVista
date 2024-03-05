@@ -1,8 +1,11 @@
+import { Link } from "react-router-dom"
 
 
 function Card({room}) {
   return (
-    <div><div className='col-span-1 cursor-pointer group'>
+    <div>
+      <Link to={`/room/${room?._id}`}>
+      <div className='col-span-1 cursor-pointer group'>
     <div className='flex flex-col gap-2 w-full'>
       <div
         className='
@@ -43,7 +46,9 @@ function Card({room}) {
         <div className='font-light'>night</div>
       </div>
     </div>
-  </div></div>
+  </div>
+      </Link>
+      </div>
   )
 }
 
