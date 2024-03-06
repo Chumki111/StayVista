@@ -5,6 +5,8 @@ import Loader from "../../components/Shared/Loader";
 import { Helmet } from "react-helmet-async";
 import Header from "../../components/RoomDetails/Header";
 import RoomInfo from "../../components/RoomDetails/RoomInfo";
+import RoomReservation from "../../components/RoomDetails/RoomReservation";
+
 
 
 function RoomDetails() {
@@ -32,11 +34,12 @@ function RoomDetails() {
           <div className="flex flex-col gap-6">
             {/* header */}
             <Header roomData={room}/>
-            <div className="grid grid-cols-1 md:grid-cols-7 md:gap-10 mt-10">
+            <div className="grid grid-cols-1 md:grid-cols-7 md:gap-10 mt-8">
               {/* roomInfo */}
               <RoomInfo roomData={room}/>
               <div className="md:grid-cols-3 order-first md:order-last">
-                {/* calendar */}
+                {/* RoomReservation */}
+                 <RoomReservation/>
               </div>
             </div>
             
