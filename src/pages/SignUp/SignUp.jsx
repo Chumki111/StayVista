@@ -4,9 +4,10 @@ import { imageUpload } from '../../api/utils';
 import useAuth from '../../hooks/useAuth';
 import { getToken, saveUser } from '../../api/auth';
 import toast from 'react-hot-toast';
+import { ImSpinner9 } from "react-icons/im";
 
 const SignUp = () => {
-  const { createUser, signInWithGoogle, updateUserProfile } = useAuth();
+  const { createUser, signInWithGoogle, updateUserProfile, loading } = useAuth();
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -19,10 +20,29 @@ const SignUp = () => {
       // image upload
       const imageData = await imageUpload(image);
       // registration
-      const result = await createUser(email,password);
+      const result = await createUser(email, password);
       // save user name & profile
-      await updateUserProfile(name,imageData?.data?.display_url);
+      await updateUserProfile(name, imageData?.data?.display_url);
       console.log(result);
+      // save user data in database
+      const dbResponse = await saveUser(result?.user);
+      console.log(dbResponse);
+      // get token
+      await getToken(result?.user?.email);
+      navigate('/');
+      toast.success('Sign Up Successful')
+
+
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.message)
+    }
+  }
+  const handleGoogleSignIn =async() =>{
+    try {
+    //  registration with google
+      const result = await signInWithGoogle();
+      
       // save user data in database
       const dbResponse = await saveUser(result?.user);
       console.log(dbResponse);
@@ -112,7 +132,7 @@ const SignUp = () => {
               type='submit'
               className='bg-rose-500 w-full rounded-md py-3 text-white'
             >
-              Continue
+              {loading ? <ImSpinner9 className='animate-spin m-auto text-xl'/> : 'Continue'}
             </button>
           </div>
         </form>
@@ -123,7 +143,7 @@ const SignUp = () => {
           </p>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
         </div>
-        <div className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
+        <div onClick={handleGoogleSignIn} className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
           <FcGoogle size={32} />
 
           <p>Continue with Google</p>
