@@ -1,21 +1,33 @@
 import { Link } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
-import axios from 'axios';
 import { imageUpload } from '../../api/utils';
 import useAuth from '../../hooks/useAuth';
+import { saveUser } from '../../api/auth';
 
 const SignUp = () => {
-  const {createUser,signInWithGoogle,updateUserProfile} = useAuth();
-  const handleSubmit = async (event) =>{
+  const { createUser, signInWithGoogle, updateUserProfile } = useAuth();
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
-    const email= form.email.value;
+    const email = form.email.value;
     const password = form.password.value;
     const image = form.image.files[0];
-    const imageData = await imageUpload(image);
-    
+    try {
+      // image upload
+      const imageData = await imageUpload(image);
+      // registration
+      const result = await createUser(email,password);
+      // save user name & profile
+      await updateUserProfile(name,imageData?.data?.display_url);
+      console.log(result);
+      // save user data in database
+      const dbResponse = await saveUser(result?.user);
+      console.log(dbResponse);
 
+    } catch (err) {
+      console.log(err);
+    }
   }
   return (
     <div className='flex justify-center items-center min-h-screen'>
