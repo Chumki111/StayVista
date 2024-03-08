@@ -5,17 +5,17 @@ import Container from "../Shared/Container";
 import { useSearchParams } from "react-router-dom";
 import Headings from "../Shared/Headings";
 import Loader from "../Shared/Loader";
+import { getAllRooms } from "../../api/rooms";
 
 function Rooms() {
   const [rooms, setRooms] = useState([]);
   const [params, setParams] = useSearchParams();
   const category = params.get("category");
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
     setLoading(true)
-    fetch("rooms.json")
-      .then((res) => res.json())
-      .then((data) => {
+    getAllRooms()
+     .then((data) => {
         if (category) {
           const filtered = data.filter(room => room.category === category)
           setRooms(filtered)
@@ -28,7 +28,7 @@ function Rooms() {
 
       );
   }, [category]);
-  if(loading) return <Loader/>
+  if (loading) return <Loader />
   return (
     <Container>
       {
@@ -37,11 +37,11 @@ function Rooms() {
             <Card key={room._id} room={room} />
           ))}
         </div> : <div className="flex justify-center items-center min-h-[calc(100vh-300px)]">
-        <Headings
-          center={true}
-          title="No Rooms Available In This Category"
-          subtitle="Please Select Other Category"
-        />
+          <Headings
+            center={true}
+            title="No Rooms Available In This Category"
+            subtitle="Please Select Other Category"
+          />
         </div>
       }
     </Container>
