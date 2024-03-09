@@ -7,6 +7,8 @@ const Calender = ({ value }) => {
       rangeColors={['#F43F5E']}
       direction='vertical'
       showDateDisplay={false}
+      onChange={() =>console.log()}
+      
 
     />
   )
