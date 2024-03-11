@@ -1,6 +1,16 @@
+import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
+import useAuth from '../../../hooks/useAuth'
+import { getHostRooms } from '../../../api/rooms'
+import RoomDataRow from '../../../components/Dashboard/TableRows/RoomDataRow'
 
 const MyListings = () => {
+const {user} = useAuth();
+const[rooms,setRooms] = useState([])
+  useEffect(()=>{
+    getHostRooms(user?.email)
+    .then(data =>setRooms(data))
+  },[user])
   return (
     <>
       <Helmet>
@@ -58,7 +68,11 @@ const MyListings = () => {
                     </th>
                   </tr>
                 </thead>
-                <tbody>{/* Room row data */}</tbody>
+                <tbody>
+                  
+                  {/* Room row data */}
+                  {rooms?.map(room=> <RoomDataRow key={room._id} room={room}/>)}
+                </tbody>
               </table>
             </div>
           </div>
