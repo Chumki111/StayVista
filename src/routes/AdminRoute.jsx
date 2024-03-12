@@ -3,13 +3,13 @@ import Loader from "../components/Shared/Loader";
 import useRole from "../hooks/useRole";
 
 
-const HostRoute = ({children}) => {
+const AdminRoute = ({children}) => {
 
 const [role,loading] = useRole();
 console.log(role);
    if(loading) return <Loader/>
-    if(role === 'host') return children;
+    if(role === 'admin') return children;
   return <Navigate to='/dashboard'/>
 }
 
-export default HostRoute;
+export default AdminRoute;
