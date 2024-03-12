@@ -32,15 +32,15 @@ export const router = createBrowserRouter([
   { path: '/signup', element: <SignUp /> },
   {
     path:'/dashboard',
-    element:<DashboardLayout/>,
+    element:<PrivetRoute><DashboardLayout/></PrivetRoute>,
     children:[
       {
         path:'add-room',
-        element:<AddRoom/>
+        element:<PrivetRoute><AddRoom/></PrivetRoute>
       },
       {
         path:'my-listings',
-        element:<MyListings/>
+        element:<PrivetRoute><MyListings/></PrivetRoute>
       }
     ]
   }
