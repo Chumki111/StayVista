@@ -11,7 +11,7 @@ const Main = () => {
     // Simulating data fetching delay with setTimeout
     setTimeout(() => {
       setLoading(false);
-    }, 4000); // Adjust the delay time as needed
+    }, 2000); // Adjust the delay time as needed
   }, []);
 
   if (loading) {
