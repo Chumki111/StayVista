@@ -1,8 +1,7 @@
-import React from 'react'
 import { DateRange } from 'react-date-range'
 import { ImSpinner9 } from "react-icons/im";
 import { categories } from '../Rooms/Categories/CategoriesData'
-
+import PropTypes from 'prop-types';
 const AddRoomForm = ({
   handleSubmit,
   dates,
@@ -182,5 +181,13 @@ const AddRoomForm = ({
     </div>
   )
 }
+AddRoomForm.propTypes={
+  handleSubmit:PropTypes.func,
+  dates:PropTypes.object,
+  handleDates:PropTypes.func,
+  loading:PropTypes.bool,
+  handleImageChange:PropTypes.func,
+  uploadButtonText:PropTypes.string,
 
+}
 export default AddRoomForm

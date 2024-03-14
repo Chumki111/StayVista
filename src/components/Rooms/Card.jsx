@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom"
-
+import PropTypes from 'prop-types';
 
 function Card({room}) {
+ 
   return (
     <div>
       <Link to={`/room/${room?._id}`}>
@@ -51,5 +52,7 @@ function Card({room}) {
       </div>
   )
 }
-
+Card.propTypes={
+  room:PropTypes.object
+}
 export default Card

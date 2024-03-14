@@ -1,9 +1,9 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { format } from 'date-fns'
 import { Fragment } from 'react'
-
+import PropTypes from 'prop-types';
 const BookingModal = ({ closeModal, isOpen, bookingInfo }) => {
-  return (
+    return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as='div' className='relative z-10' onClose={closeModal}>
         <Transition.Child
@@ -72,6 +72,11 @@ const BookingModal = ({ closeModal, isOpen, bookingInfo }) => {
       </Dialog>
     </Transition>
   )
+}
+BookingModal.propTypes={
+    closeModal:PropTypes.func,
+    isOpen:PropTypes.bool,
+    bookingInfo:PropTypes.object
 }
 
 export default BookingModal

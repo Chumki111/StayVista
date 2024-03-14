@@ -1,8 +1,8 @@
 import qs from "query-string";
 import { useNavigate, useSearchParams } from "react-router-dom";
-
+import PropTypes from 'prop-types';
 function CategoryBox({ label, icon: Icon, selected }) {
-  const [params, setParams] = useSearchParams();
+const [params, setParams] = useSearchParams();
   const navigate = useNavigate();
   const handleClick = () => {
     // console.log(label);
@@ -31,5 +31,10 @@ function CategoryBox({ label, icon: Icon, selected }) {
     </div>
   );
 }
+CategoryBox.propTypes={
+  label:PropTypes.string,
+  icon:PropTypes.elementType,
+  selected:PropTypes.bool
 
+}
 export default CategoryBox;

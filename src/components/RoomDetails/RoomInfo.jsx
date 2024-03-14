@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 const RoomInfo = ({ roomData }) => {
     return (
       <div className='col-span-4 flex flex-col gap-8'>
@@ -48,6 +49,10 @@ const RoomInfo = ({ roomData }) => {
         <hr />
       </div>
     )
+  }
+
+  RoomInfo.propTypes={
+    roomData:PropTypes.object
   }
   
   export default RoomInfo

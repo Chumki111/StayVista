@@ -1,5 +1,5 @@
 import { DateRange } from 'react-date-range'
-
+import PropTypes from 'prop-types';
 const Calender = ({ value }) => {
   return (
     <DateRange
@@ -13,5 +13,7 @@ const Calender = ({ value }) => {
     />
   )
 }
-
+Calender.propTypes={
+  value:PropTypes.object
+}
 export default Calender;

@@ -4,7 +4,7 @@ import Calender from "./Calender"
 import { formatDistance} from "date-fns";
 import BookingModal from "../Modal/BookingModal";
 import useAuth from "../../hooks/useAuth";
-
+import PropTypes from 'prop-types';
 
 function RoomReservation({roomData}) {
   const {user} = useAuth();
@@ -70,5 +70,7 @@ function RoomReservation({roomData}) {
     </div>
   )
 }
-
+RoomReservation.propTypes={
+  roomData:PropTypes.object
+}
 export default RoomReservation

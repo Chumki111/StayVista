@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 const ToggleBtn = ({ toggleHandler }) => {
+  
     return (
       <>
         <label
@@ -21,5 +23,7 @@ const ToggleBtn = ({ toggleHandler }) => {
       </>
     )
   }
-  
+  ToggleBtn.propTypes={
+    toggleHandler:PropTypes.func
+  }
   export default ToggleBtn

@@ -16,7 +16,6 @@ import AdminMenu from './AdminMenu'
 import GuestMenu from './GuestMenu'
 const Sidebar = () => {
   const [role] = useRole();
-  console.log(role);
   const {logOut} = useAuth();
   const [toggle, setToggle] = useState(false)
   const [isActive, setActive] = useState(false)
