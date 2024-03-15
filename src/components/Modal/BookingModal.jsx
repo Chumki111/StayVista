@@ -1,9 +1,14 @@
 import { Dialog, Transition } from '@headlessui/react'
+import { Elements } from '@stripe/react-stripe-js'
 import { format } from 'date-fns'
 import { Fragment } from 'react'
+import CheckoutForm from '../Form/CheckoutForm'
+import { loadStripe } from '@stripe/stripe-js'
 import PropTypes from 'prop-types';
+const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_Pk)
 const BookingModal = ({ closeModal, isOpen, bookingInfo }) => {
-    return (
+
+  return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as='div' className='relative z-10' onClose={closeModal}>
         <Transition.Child
@@ -38,7 +43,7 @@ const BookingModal = ({ closeModal, isOpen, bookingInfo }) => {
                 </Dialog.Title>
                 <div className='mt-2'>
                   <p className='text-sm text-gray-500'>
-                    Room: {bookingInfo?.title}
+                    Room: {bookingInfo.title}
                   </p>
                 </div>
                 <div className='mt-2'>
@@ -48,13 +53,13 @@ const BookingModal = ({ closeModal, isOpen, bookingInfo }) => {
                 </div>
                 <div className='mt-2'>
                   <p className='text-sm text-gray-500'>
-                    Guest: {bookingInfo?.guest?.name}
+                    Guest: {bookingInfo.guest.name}
                   </p>
                 </div>
                 <div className='mt-2'>
                   <p className='text-sm text-gray-500'>
-                    From: {format(new Date(bookingInfo?.from), 'PP')} - To:{' '}
-                    {format(new Date(bookingInfo?.to), 'PP')}
+                    From: {format(new Date(bookingInfo.from), 'PP')} - To:{' '}
+                    {format(new Date(bookingInfo.to), 'PP')}
                   </p>
                 </div>
 
@@ -65,6 +70,13 @@ const BookingModal = ({ closeModal, isOpen, bookingInfo }) => {
                 </div>
                 <hr className='mt-8 ' />
                 {/* Card data form */}
+                {/* checkout form */}
+                <Elements stripe={stripePromise}>
+                  <CheckoutForm
+                    closeModal={closeModal}
+                    bookingInfo={bookingInfo}
+                  />
+                </Elements>
               </Dialog.Panel>
             </Transition.Child>
           </div>
@@ -74,9 +86,8 @@ const BookingModal = ({ closeModal, isOpen, bookingInfo }) => {
   )
 }
 BookingModal.propTypes={
-    closeModal:PropTypes.func,
-    isOpen:PropTypes.bool,
-    bookingInfo:PropTypes.object
+  bookingInfo:PropTypes.object,
+  closeModal:PropTypes.func,
+  isOpen:PropTypes.bool
 }
-
 export default BookingModal
