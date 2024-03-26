@@ -14,6 +14,7 @@ import HostRoute from './HostRoute'
 import AdminRoute from './AdminRoute'
 import ManageUser from '../pages/Dashboard/Admin/ManageUser'
 import Profile from '../pages/Dashboard/Common/Profile'
+import MyBookings from '../pages/Dashboard/Guest/MyBookings'
 
 export const router = createBrowserRouter([
   {
@@ -44,10 +45,10 @@ export const router = createBrowserRouter([
       </PrivetRoute>,
     children: [
       // guest route
-      // {
-      //   path:'my-bookings',
-      //   element:
-      // },
+      {
+        path:'my-bookings',
+        element:<MyBookings/>
+      },
       // host route
       {
         path: 'add-room',
