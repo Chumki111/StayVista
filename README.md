@@ -11,9 +11,9 @@ StayVista aims to provide a seamless booking experience for guests, while offeri
 1. **Fully Responsive** Designed to work on all devices, from mobile phones to desktops
 
 2. **Role-based Access Control** Admins, guests, and hosts have different capabilities.
-**--Admin** Can upgrade guests to hosts and manage users and hosts.
-   **Guest** Can book rooms and apply to become hosts.
-   **Host** Can add rooms and cancel bookings.
+
+**Admin** Can upgrade guests to hosts and manage users and hosts.**Guest** Can book rooms and apply to become hosts.
+**Host** Can add rooms and cancel bookings.
 
 3. **Dynamic Room Listings** Rooms can be added, updated, and managed dynamically.
 4. **Booking Management** Users can book rooms, and hosts can manage these bookings.
